@@ -1,0 +1,16 @@
+name: "first"
+
+on:
+    push:
+        branches:
+            - master
+
+jobs:
+    first_github_action:
+        runs-on: ubuntu-latest
+        steps:
+            - name: "file check"
+              run: ls -lrt
+            
+            - name: "print date"
+              run: date
