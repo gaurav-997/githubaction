@@ -1,0 +1,33 @@
+name: "python test pipeline"
+
+on:
+    push:
+        branches:
+        - main
+    pull_request:
+        branches:
+        - main
+    
+jobs:
+    test:
+        runs-on: ubuntu-latest
+
+        steps:
+        # code checkout
+        - name: checkout code
+          uses: actions/checkout@v2
+        
+        # setup pyhton 
+        - name: set up python
+          uses: actions/setup-python@v2
+          with:
+            python-version: '3.8'
+        
+        #  install dependicies
+        - name: install dependicies
+          run: |
+                python -m pip install --upgrade pip
+                pip install -r requirments.txt
+        #  run the test
+        - name: run test
+          run: pytest
